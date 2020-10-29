@@ -1,6 +1,6 @@
 //mostly for varible storage
 
-const store = {
+/*const store = {
     bookmarks: [
       {
         id: '7ddr',
@@ -15,4 +15,4 @@ const store = {
     adding: false,
     error: null,
     filter: 0
-  };
+  };*/

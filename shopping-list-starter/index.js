@@ -2,7 +2,6 @@
 
 function generateWebApp() {
   $('div.webAppBody').html(topPageOne());
-  debugger
   $('div.container').html(bottomPageOne());
 }
 
@@ -11,10 +10,25 @@ function addURL() {
   $('div.container').html(bottomPageTwo());
 }
 
-//what happens when you select the dropdown menu
-function stars() {
+function newBookmark() {
+  let bookmarkUrl = $('#urlBox').val()
+  let bookmarkTitle = $('#titleBox').val()
+  //let bookmarkRating $('#titleBox').val()
+  let bookmarkDesc = $('#urlDesc').val()
+}
 
-};
+function fetchUrl() {
+  fetch('https://thinkful-list-api.herokuapp.com', { method:}
+    .then(response => response.json())
+    .then(responseJson => console.log(responseJson));
+    .catch(error => console.log('Shits Broke'))
+    return fetch;
+}
+
+//what happens when you select the dropdown menu
+/*function stars() {
+
+};*/
 
 //will consist of adding a new bookmark and filterby
 function topPageOne() {
@@ -46,36 +60,52 @@ function topPageTwo() {
   let topPageTwo = `
   <div class="startPage">
   <p>Add New Bookmark</p>
-      <input type="text" value="Enter Link Here">
+    <input id="urlBox" type="text" value="Enter URL Here">
   </div>`;
   return topPageTwo;
 };
+
+
+/*<div class="container">
+  <form id="js-shopping-list-form">
+    <label for="shopping-list-entry">Add an item</label>
+    <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli"></input>
+    <button type="submit">Add item</button>
+  </form>
+  <div>
+    <input type="checkbox" id="filter-checked" class="filter-checked js-filter-checked" />
+    <label for="filter-checked">Hide Checked</label>
+  </div>
+  <div>
+    <ul class="shopping-list js-shopping-list">
+    </ul>
+  </div>
+  </div>*/
+
+  /*
+      <div>pizza</div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>   
+
+      <section class="startPageFlex">
+          <div class="startPageFruit">
+          <ul>
+          <li>bookmark</li>
+          <li>bookmark</li>
+          <li>bookmark</li>
+          <li>bookmark</li>
+          </ul>
+          </div>
+      </section> 
+  */
 
 //will have an title 
 function bottomPageOne() {
   let bottomPageOne =`
   <div>
-    <div class="container">
-      <form id="js-shopping-list-form">
-        <label for="shopping-list-entry">Add an item</label>
-        <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli"></input>
-        <button type="submit">Add item</button>
-      </form>
-      <div>
-        <input type="checkbox" id="filter-checked" class="filter-checked js-filter-checked" />
-        <label for="filter-checked">Hide Checked</label>
-      </div>
-      <div>
-        <ul class="shopping-list js-shopping-list">
-        </ul>
-      </div>
-    
-
-      <section class="startPageFlex">
-          <div class="startPageFruit">
-          </div>
-      </section>
-    </div>
+  <p>
   </div>`
 return bottomPageOne;
 
@@ -83,12 +113,11 @@ return bottomPageOne;
 
 //will consist of bookmarks that have already been made (will need a varible to store this info as an array)
 function bottomPageTwo() {
-  debugger
   let bottomPageTwo = `
 
   <section>
     <div class="one">
-      <input type="text" value="Title goes here"></input>
+      <input id="titleBox" type="text" value="Title goes here"></input>
     </div>  
     <div class="urlDesc">
       <option value='5'>⭐⭐⭐</option>
@@ -100,8 +129,6 @@ function bottomPageTwo() {
       <button id="createButton">Create</button>
     </div>
   </section>`
-
-  console.log(bottomPageTwo);
   return bottomPageTwo;
 };
 
@@ -113,13 +140,20 @@ function newURLButton() {
   });
 };
 
+
 //action for cancel button
 function cancelButton() {
-  $('#cancelButton').click(function() {
+  $('body').on('click', '#cancelButton', function() {
     generateWebApp();
     console.log("returning to main menu")
   });
 };
+
+function createButton() {
+  $('body').on('click', '#createButton', function(){
+    fetchUrl();
+  });
+}
 
   /*function buttonHandler() {
     if()
@@ -142,9 +176,6 @@ function cancelButton() {
 const store = {
   items: [
     { id: cuid(), name: 'apples', checked: false },
-    { id: cuid(), name: 'oranges', checked: false },
-    { id: cuid(), name: 'milk', checked: true },
-    { id: cuid(), name: 'bread', checked: false }
   ],
   hideCheckedItems: false
 };
@@ -304,13 +335,19 @@ const handleShoppingList = function () {
   handleToggleFilterClick(); 
 };
 
-// when the page loads, call all dis stuff bellow 
+const buttonHandler = function () {
+  newURLButton();
+  cancelButton();
+  createButton();
 
+};
+// when the page loads, call all dis stuff bellow 
 
 function main() {
   handleShoppingList();
   generateWebApp();
-  newURLButton()
+  buttonHandler();
 
 };
+
 $(main);
