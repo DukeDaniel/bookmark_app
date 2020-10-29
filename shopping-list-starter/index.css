@@ -68,3 +68,7 @@ h1 {
   height: 300px;
   margin: 0px;
 }
+
+select {
+  height: 35px;
+}

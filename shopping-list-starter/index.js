@@ -2,6 +2,7 @@
 
 function generateWebApp() {
   $('div.webAppBody').html(topPageOne());
+  debugger
   $('div.container').html(bottomPageOne());
 }
 
@@ -10,6 +11,11 @@ function addURL() {
   $('div.container').html(bottomPageTwo());
 }
 
+//what happens when you select the dropdown menu
+function stars() {
+
+};
+
 //will consist of adding a new bookmark and filterby
 function topPageOne() {
   let topPageOne = `
@@ -17,11 +23,23 @@ function topPageOne() {
     <h2>whats your URL</h2>
       <input type="text">
         <br>
-      <button id="newPage" onclick="newURLButton()" type="button">+ New</button>
-      <button>Filter By</button>    
-  </div>`;
-  return topPageOne;
-};
+        <form>
+          <button id="newPage" type="button">+ New</button>
+          <select id="filter" onchange="stars()" Value="Filter" >
+          <option>Filter By</option>
+          <option>5 stars</option>
+          <option>4 stars</option>
+          <option>3 stars</option>
+          <option>2 stars</option>
+          <option>1 stars</option>
+          </select>
+      <!--<button class="filter" >Filter By</button>-->
+
+        </form>    
+        </div>`;
+        return topPageOne;
+      };
+      
 
 //will consist of url text box to add a book mark
 function topPageTwo() {
@@ -35,7 +53,7 @@ function topPageTwo() {
 
 //will have an title 
 function bottomPageOne() {
-  bottomPageOne =`
+  let bottomPageOne =`
   <div>
     <div class="container">
       <form id="js-shopping-list-form">
@@ -59,7 +77,7 @@ function bottomPageOne() {
       </section>
     </div>
   </div>`
-return bottomPageOne
+return bottomPageOne;
 
 };
 
@@ -78,8 +96,8 @@ function bottomPageTwo() {
       <textarea name="description" id="urlDesc" cols="50px" rows="25px" placeholder="description"></textarea>
     </div>
     <div>
-      <button>Cancel</button>
-      <button>Create</button>
+      <button id="cancelButton" onclick="cancelButton()" type="button">Cancel</button>
+      <button id="createButton">Create</button>
     </div>
   </section>`
 
@@ -87,21 +105,27 @@ function bottomPageTwo() {
   return bottomPageTwo;
 };
 
-  function newURLButton() {
-  $('#newPage').click(function() {
-    //evt.preventDefault();
-    debugger
-    console.log("running");
-
+//action for newURL button
+function newURLButton() {
+  $('body').on('click', '#newPage', function() {
     addURL();
     console.log("running second mainpage");
   });
+};
 
-  function buttonHandler() {
+//action for cancel button
+function cancelButton() {
+  $('#cancelButton').click(function() {
+    generateWebApp();
+    console.log("returning to main menu")
+  });
+};
+
+  /*function buttonHandler() {
     if()
   }
 
-  }
+  }*/
 
 
 
@@ -145,14 +169,14 @@ const generateItemElement = function (item) {
         </button>
       </div>
     </li>`;
-};
+}
 
 const generateShoppingItemsString = function (shoppingList) {
   const items = shoppingList.map((item) => generateItemElement(item));
   return items.join('');
 };
 
-/**
+/*
  * Render the shopping list in the DOM
  */
 const render = function () {
@@ -280,11 +304,13 @@ const handleShoppingList = function () {
   handleToggleFilterClick(); 
 };
 
-// when the page loads, call `handleShoppingList`
-$(handleShoppingList);
+// when the page loads, call all dis stuff bellow 
+
 
 function main() {
+  handleShoppingList();
   generateWebApp();
+  newURLButton()
 
-}
-main();
+};
+$(main);
