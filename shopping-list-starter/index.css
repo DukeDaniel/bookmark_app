@@ -23,6 +23,10 @@ button:hover {
 #shopping-list-item {
   width: 250px;
 }
+.webAppBody {
+  max-width: 600px;
+  margin: 0 auto;
+}
 
 .container {
   max-width: 600px;
@@ -50,4 +54,17 @@ button:hover {
 
 .shopping-item__checked {
   text-decoration: line-through;
+}
+
+h1 {
+  text-align: center;
+}
+
+.one {
+  margin: 10px;
+}
+
+.desc {
+  height: 300px;
+  margin: 0px;
 }
