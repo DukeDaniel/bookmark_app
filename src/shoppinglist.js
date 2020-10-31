@@ -135,6 +135,7 @@
     store.hideCheckedItems = !store.hideCheckedItems;
   };
   
+  
   /**
    * Places an event listener on the checkbox 
    * for hiding completed items.

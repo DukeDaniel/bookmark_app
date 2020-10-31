@@ -1,11 +1,41 @@
 import $ from 'jquery';
 import index from './index'
 
+let BASE_URL = 'https://thinkful-list-api.herokuapp.com';
+let get = `${BASE_URL}/Duke/bookmarks`;
+let post = `${BASE_URL}/Duke/bookmarks`;
+let patch = `${BASE_URL}/Duke/bookmarks/`;
+
+
+//adds the bookmark to store
+function addBookmark(){
+  let name = $('#siteName').val();
+  let siteLink = $('#siteURL').val();
+  let description = $('#description').val();
+  let rating = $('input[type="radio"]:checked').val();
+  return fetch(post, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      "title": name,
+      "url": siteLink,
+      "desc": description,
+      "rating": rating
+    })
+  })
+.then(response => response.json())
+.then(postedJson => postedJson);
+console.log(store.items.bookmarks)
+}
+
+/*const addToStore = function (title) {
+  store.items.push({ id: cuid(), name: title, url:'url', description:'', rating:'', collapsed: true});
+};*/
 
 //action for newURL button
 function newURLButton() {
-    $('body').on('click', '#newPage', function() {
-      addURL();
+  $('body').on('click', '#newPage', function() {
+    addURL();
       console.log("running second mainpage");
     });
   };
@@ -23,20 +53,24 @@ function newURLButton() {
     $('body').on('click', '#createButton', function(title){
         fetchUrl()
     });
-  }
+  };
   
 
   
   function generateWebApp() {
+    console.log("generatewebapp")
       $('div.webAppBody').html(index.topPageOne());
-      $('div.container').html(index.bottomPageOne);
+      $('div.container').html(index.bottomPageOne());
     }
     
     function addURL() { 
+      console.log("addurl")
         $('div.webAppBody').html(index.topPageTwo());
         $('div.container').html(index.bottomPageTwo());
     }
     
+
+    //doesnt work yet
     function newBookmark() {
         let bookmarkUrl = $('#urlBox').val()
         let bookmarkTitle = $('#titleBox').val()
@@ -52,27 +86,62 @@ function newURLButton() {
         return fetch;
     }
 
-    function postUrl() {
-        fetch('https://thinkful-list-api.herokuapp.com/duke/items', { method: 'POST', }
+    /*function postUrl() {
+      const addBookmark = function (formObject) { 
+        console.log(formObject); return fetch(${BASE_URL}/bookmarks, 
+        { method: 'POST', headers: { 'Content-Type': 'application/json', }, 
+        body: formObject }); };
+      
+      fetch('https://thinkful-list-api.herokuapp.com/duke/items', { method: 'POST', }
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.log('Shits Broke'))
         return fetch;
-    };
+    };*/
+
+
+
+    /*Bookmark Ratings======================================================*/
+    function ratings(){
+      $(".rating input:radio").attr("checked", false);
+      $('.rating input').on('click', function () {
+          $(".rating span").removeClass('checked');
+          $(this).parent().addClass('checked');
+      });
+  
+      $('input:radio').change(
+        function(){
+          let userRating = this.value;
+      }); 
+  };
+
+
+    /*
+    //C //Creates bookmark object at bookmark endpoint 
+    const addBookmark = function (formObject) { 
+      console.log(formObject); return fetch(${BASE_URL}/bookmarks, 
+      { method: 'POST', headers: { 'Content-Type': 'application/json', }, 
+      body: formObject }); };
+    */
+
+
+
+
+
 
      
-    const addToStore = function (title) {
+    /*const addToStore = function (title) {
         store.items.push({ id: cuid(), name: title, url:'url', description:'', rating:'', collapsed: true});
-      };
+      };*/
     
     const buttonHandler = function () {
+        //addURL();
+        generateWebApp();
+        addBookmark();
         newURLButton();
         cancelButton();
         createButton();
-        fetchUrl();
-        newBookmark();
-        addURL();
-        generateWebApp();
+        fetchUrl();        
         
     };
 

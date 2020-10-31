@@ -6,7 +6,7 @@ import dostuff from './dostuff';
 import './index.css';
 
 
-
+/*Templates========================================================================*/
 //will consist of adding a new bookmark and filterby
 function topPageOne() {
   let topPageOne = `
@@ -80,39 +80,49 @@ function topPageTwo() {
 
 //will have an title 
 function bottomPageOne() {
-  let bottomPageOne =`
-  <div>
-    <form class='form' id='myForm'>
-      <label for='inp_username'>username</label>
-      <input type='text' name='inp_username' id='inp_username'>
-      <label for='password'>password</label>
-      <input type='password' name='inp_password' id='inp_password'>
-      <button type='submit'>login</button>
-    </form>
-  </div>`
-return bottomPageOne;
-
+  function generateForm(){
+    return `<h1>New Bookmark</h1>
+    <div id="formUp">
+      <div id="listContainer" class="listContainer">
+        <div>
+          <form class="addingNew">
+            <fieldset>
+              <legend>New Bookmark</legend>
+              <label for="siteName">Site Name:</label>
+              <input id="siteName" type="text" name="site" placeholder="Name"><br>
+  
+              <label for="siteURL">Site:</label>
+              <input id="siteURL" type="text" name="siteURL" required placeholder="https://"><br>
+  
+              <label for="description">Description:</label><br>
+              <textarea name="description" id="description" cols="30" rows="10" placeholder="Site Description"></textarea><br><br>
+              <div id="rating" class="rating">
+                <span><input type="radio" name="rating" id="str5" value="5" required><label for="str5">5</label></span>
+                <span><input type="radio" name="rating" id="str4" value="4"><label for="str4">4</label></span>
+                <span><input type="radio" name="rating" id="str3" value="3"><label for="str3">3</label></span>
+                <span><input type="radio" name="rating" id="str2" value="2"><label for="str2">2</label></span>
+                <span><input type="radio" name="rating" id="str1" value="1"><label for="str1">1</label></span>
+              </div>
+            </fieldset>
+            
+          <div class="linkRemove"> 
+              <button id="cancel">Cancel</button>
+              <button type="submit" value="submit" id="addBookmark">Add Bookmark</button>
+          </div>
+         </form>
+  
+    </div>`;
+     
+  }  
+  return generateForm();
 };
 
 //will consist of bookmarks that have already been made (will need a varible to store this info as an array)
 function bottomPageTwo() {
-  let bottomPageTwo = `
+  /*let bottomPageTwo = 
 
-  <section>
-    <div class="one">
-      <input id="titleBox" type="text" value="Title goes here"></input>
-    </div>  
-    <div class="urlDesc">
-      <option value='5'>⭐⭐⭐</option>
-      <br>
-      <textarea name="description" id="urlDesc" cols="50px" rows="25px" placeholder="description"></textarea>
-    </div>
-    <div>
-      <button id="cancelButton" onclick="cancelButton()" type="button">Cancel</button>
-      <button id="createButton">Create</button>
-    </div>
-  </section>`
-  return bottomPageTwo;
+
+  return bottomPageTwo;*/
 };
 
 function main() {

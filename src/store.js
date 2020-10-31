@@ -4,7 +4,6 @@ import cuid from 'cuid';
 
 const store = {
   bookmarks: [
-    {id: 1, title:'title', url:'url', description:'', rating:''}
   ],
   adding: true,
   error: null,
