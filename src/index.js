@@ -7,14 +7,13 @@ import './index.css';
 
 
 /*Templates========================================================================*/
-//will consist of adding a new bookmark and filterby
+//static top layer for the rest of the app
 function topPageOne() {
   let topPageOne = `
   <div class="startPage">
     <h2>whats your URL</h2>
       <input type="text">
         <br>
-        <form>
           <button id="newPage" type="button">+ New</button>
           <select id="filter" onchange="stars()" Value="Filter" >
           <option>Filter By</option>
@@ -24,25 +23,23 @@ function topPageOne() {
           <option>2 stars</option>
           <option>1 stars</option>
           </select>
-      <!--<button class="filter" >Filter By</button>-->
+          <button id="addToList" type="button">+ Bookmark</button>
 
-        </form>    
+            
         </div>`;
         return topPageOne;
       };
       
 
 //will consist of url text box to add a book mark
-function topPageTwo() {
+/*function topPageTwo() {
   let topPageTwo = `
   <div class="startPage">
   <p>Add New Bookmark</p>
     <input id="urlBox" type="text" value="Enter URL Here">
   </div>`;
   return topPageTwo;
-};
-
-
+};*/
 /*<div class="container">
   <form id="js-shopping-list-form">
     <label for="shopping-list-entry">Add an item</label>
@@ -58,7 +55,6 @@ function topPageTwo() {
     </ul>
   </div>
   </div>*/
-
   /*
       <div>pizza</div>
     <div></div>
@@ -78,7 +74,7 @@ function topPageTwo() {
       </section> 
   */
 
-//will have an title 
+//will populate the bottom form position
 function bottomPageOne() {
   function generateForm(){
     return `<h1>New Bookmark</h1>
@@ -114,15 +110,11 @@ function bottomPageOne() {
     </div>`;
      
   }  
-  return generateForm();
 };
 
 //will consist of bookmarks that have already been made (will need a varible to store this info as an array)
 function bottomPageTwo() {
-  /*let bottomPageTwo = 
-
-
-  return bottomPageTwo;*/
+  <ul class="shopping-list"></ul>
 };
 
 function main() {
@@ -132,7 +124,7 @@ function main() {
 
 export default {
   topPageOne,
-  topPageTwo,
+  //topPageTwo,
   bottomPageOne,
   bottomPageTwo
 }

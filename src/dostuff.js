@@ -32,15 +32,23 @@ console.log(store.items.bookmarks)
   store.items.push({ id: cuid(), name: title, url:'url', description:'', rating:'', collapsed: true});
 };*/
 
-//action for newURL button
+//button action for newURL button
 function newURLButton() {
   $('body').on('click', '#newPage', function() {
     addURL();
       console.log("running second mainpage");
     });
   };
+//button action for adding a list item element to the DOM
+  function addBookmarkToList() {
+    $('body').on('click', '#addToList', function() {
+      makeBookmark();
+        console.log("Adding list item to DOM")
+    });
+  };
   
-    //action for cancel button
+  
+//button action for cancel button
   function cancelButton() {
     $('body').on('click', '#cancelButton', function() {
       generateWebApp();
@@ -48,60 +56,72 @@ function newURLButton() {
     });
   };
   
-  //creates a button after filling out the details
+//creates a button after filling out the details
   function createButton() {
     $('body').on('click', '#createButton', function(title){
         fetchUrl()
     });
   };
-  
 
-  
+//Render for page 1
   function generateWebApp() {
     console.log("generatewebapp")
       $('div.webAppBody').html(index.topPageOne());
-      $('div.container').html(index.bottomPageOne());
+      $('div.container').html(index.bottomPageTwo());
     }
-    
-    function addURL() { 
+//Render for page 2
+  function addURL() { 
       console.log("addurl")
         $('div.webAppBody').html(index.topPageTwo());
         $('div.container').html(index.bottomPageTwo());
     }
     
 
-    //doesnt work yet
-    function newBookmark() {
+//doesnt work yet
+  /*function newBookmark() {
         let bookmarkUrl = $('#urlBox').val()
         let bookmarkTitle = $('#titleBox').val()
         //let bookmarkRating $('#titleBox').val()
         let bookmarkDesc = $('#urlDesc').val()
-    }
+    }*/
     
-    function fetchUrl() {
+//Sending form data to store and thinkpad api
+  /*function fetchUrl() {
         fetch('https://thinkful-list-api.herokuapp.com/duke/items')
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.log('Shits Broke'))
         return fetch;
+    }*/
+    
+//how to generate the list element in the list page
+    const makeBookmark = function (item) {
+      const generateItemElement = function (item) {
+        let itemTitle = `<span class='shopping-item shopping-item__checked'>${item.name}</span>`;
+        if (!item.checked) {
+          itemTitle = `
+           <span class='shopping-item'>${item.name}</span>
+          `;
+        }
+      
+        return `
+          <li class='js-item-element' data-item-id='${item.id}'>
+            ${itemTitle}
+            <div class='shopping-item-controls'>
+              <button class='shopping-item-toggle js-item-toggle'>
+                <span class='button-label'>check</span>
+              </button>
+              <button class='shopping-item-delete js-item-delete'>
+                <span class='button-label'>delete</span>
+              </button>
+            </div>
+          </li>`;
+      };
+
     }
 
-    /*function postUrl() {
-      const addBookmark = function (formObject) { 
-        console.log(formObject); return fetch(${BASE_URL}/bookmarks, 
-        { method: 'POST', headers: { 'Content-Type': 'application/json', }, 
-        body: formObject }); };
-      
-      fetch('https://thinkful-list-api.herokuapp.com/duke/items', { method: 'POST', }
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.log('Shits Broke'))
-        return fetch;
-    };*/
-
-
-
-    /*Bookmark Ratings======================================================*/
+ 
+/*Bookmark Ratings======================================================*/
     function ratings(){
       $(".rating input:radio").attr("checked", false);
       $('.rating input').on('click', function () {
@@ -124,12 +144,7 @@ function newURLButton() {
       body: formObject }); };
     */
 
-
-
-
-
-
-     
+   
     /*const addToStore = function (title) {
         store.items.push({ id: cuid(), name: title, url:'url', description:'', rating:'', collapsed: true});
       };*/

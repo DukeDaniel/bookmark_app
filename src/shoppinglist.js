@@ -1,4 +1,4 @@
-/*const store = {
+const store = {
     items: [
       { id: cuid(), name: 'apples', checked: false },
       { id: cuid(), name: 'oranges', checked: false },
@@ -6,7 +6,7 @@
       { id: cuid(), name: 'bread', checked: false }
     ],
     hideCheckedItems: false
-  };*/
+  };
   
   //item that is created after clicking add item
   const generateItemElement = function (item) {
@@ -16,18 +16,9 @@
        <span class='shopping-item'>${item.name}</span>
       `;
     }
-  
     return `
       <li class='js-item-element' data-item-id='${item.id}'>
         ${itemTitle}
-        <div class='shopping-item-controls'>
-          <button class='shopping-item-toggle js-item-toggle'>
-            <span class='button-label'>check</span>
-          </button>
-          <button class='shopping-item-delete js-item-delete'>
-            <span class='button-label'>delete</span>
-          </button>
-        </div>
       </li>`;
   };
   
